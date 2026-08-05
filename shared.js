@@ -6,7 +6,7 @@
 // Loaded as an ES module by every page.
 // =============================================================================
 
-const DATA_URL = new URL('../data/songs.json', import.meta.url).href;
+const DATA_URL = new URL('./songs.json', import.meta.url).href;
 const FAVORITES_KEY = 'phonkcharts:favorites';
 
 let songsCache = null;
@@ -258,7 +258,7 @@ export function wireInstallPrompt() {
 export function registerServiceWorker() {
   if (!('serviceWorker' in navigator)) return;
   window.addEventListener('load', () => {
-    const swUrl = new URL('../service-worker.js', import.meta.url).href;
+    const swUrl = new URL('./service-worker.js', import.meta.url).href;
     navigator.serviceWorker.register(swUrl).catch((err) => {
       console.warn('Service worker registration failed:', err);
     });

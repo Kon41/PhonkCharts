@@ -2,7 +2,7 @@
 // =============================================================================
 // scripts/update-songs.js
 //
-// Regenerates data/songs.json. Run manually with `node scripts/update-songs.js`
+// Regenerates songs.json. Run manually with `node update-songs.js`
 // or on a schedule via .github/workflows/update-songs.yml.
 //
 // -----------------------------------------------------------------------------
@@ -34,7 +34,7 @@ import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const SONGS_PATH = path.join(__dirname, '..', 'data', 'songs.json');
+const SONGS_PATH = path.join(__dirname, 'songs.json');
 
 // eslint-disable-next-line no-unused-vars
 const SONG_SHAPE_EXAMPLE = {

@@ -23,20 +23,20 @@ const SHELL_ASSETS = [
   './favorites.html',
   './song.html',
   './manifest.json',
-  './css/style.css',
-  './js/shared.js',
-  './js/cards.js',
-  './js/app.js',
-  './js/search.js',
-  './js/categories.js',
-  './js/favorites.js',
-  './js/song.js',
-  './assets/icons/icon-192.png',
-  './assets/icons/icon-512.png',
-  './assets/icons/icon-512-maskable.png',
+  './style.css',
+  './shared.js',
+  './cards.js',
+  './app.js',
+  './search.js',
+  './categories.js',
+  './favorites.js',
+  './song.js',
+  './icon-192.png',
+  './icon-512.png',
+  './icon-512-maskable.png',
 ];
 
-const DATA_URL_PATTERN = /\/data\/songs\.json$/;
+const DATA_URL_PATTERN = /\/songs\.json$/;
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
