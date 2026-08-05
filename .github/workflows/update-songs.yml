@@ -1,0 +1,42 @@
+name: Update Trending Songs
+
+# Runs every 24 hours, regenerates data/songs.json via scripts/update-songs.js,
+# and commits the result back to the repository so GitHub Pages serves fresh
+# charts without any manual step.
+
+on:
+  schedule:
+    - cron: '0 6 * * *' # 06:00 UTC daily — adjust as needed
+  workflow_dispatch: {} # allows manual "Run workflow" trigger from the Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  update-songs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Regenerate songs.json
+        # Replace scripts/update-songs.js's fetchLatestSongs() with real API
+        # calls when a data source is available. See comments in that file.
+        run: node scripts/update-songs.js
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet -- data/songs.json; then
+            echo "No changes to data/songs.json — skipping commit."
+          else
+            git add data/songs.json
+            git commit -m "chore: update trending songs [automated]"
+            git push
+          fi
