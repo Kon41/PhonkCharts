@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>PhonkCharts — Trending Phonk, Drift & Instagram Edit Audio</title>
+<meta name="description" content="Discover the trending Phonk, Brazilian Phonk, Drift, Sigma and Instagram edit songs of the day, week and month." />
+<link rel="canonical" href="https://kon41.github.io/phonkcharts/" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="PhonkCharts — Trending Phonk & Edit Audio" />
+<meta property="og:description" content="Trending Instagram editing songs: Phonk, Drift, Sigma, Luxury, Car Edit and more." />
+<meta property="og:url" content="https://kon41.github.io/phonkcharts/" />
+<meta property="og:image" content="https://kon41.github.io/phonkcharts/assets/icons/icon-512.png" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="PhonkCharts — Trending Phonk & Edit Audio" />
+<meta name="twitter:description" content="Trending Instagram editing songs across Phonk, Drift, Sigma, Luxury and more." />
+<meta name="twitter:image" content="https://kon41.github.io/phonkcharts/assets/icons/icon-512.png" />
+
+<meta name="theme-color" content="#0a0a0f" />
+<link rel="manifest" href="manifest.json" />
+<link rel="icon" href="assets/icons/icon-192.png" />
+<link rel="apple-touch-icon" href="assets/icons/icon-192.png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,400,0,0" />
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+<div class="app-shell">
+
+  <aside class="sidebar" aria-label="Main navigation">
+    <div class="brand">
+      <div class="brand__mark">PC</div>
+      <div class="brand__name">PHONK<span>CHARTS</span></div>
+    </div>
+    <ul class="nav-list">
+      <li><a class="nav-link active" data-nav="home" href="index.html"><span class="material-symbols-outlined">home</span>Home</a></li>
+      <li><a class="nav-link" data-nav="search" href="search.html"><span class="material-symbols-outlined">search</span>Search</a></li>
+      <li><a class="nav-link" data-nav="categories" href="categories.html"><span class="material-symbols-outlined">grid_view</span>Categories</a></li>
+      <li><a class="nav-link" data-nav="favorites" href="favorites.html"><span class="material-symbols-outlined">favorite</span>Favorites</a></li>
+    </ul>
+    <div class="sidebar-foot">PhonkCharts · updated daily<br />Data refreshes every 24h</div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <span class="topbar__title topbar__title-mobile-mark">
+        <span class="brand__mark" style="width:28px;height:28px;font-size:14px;">PC</span>
+        <span class="topbar__title">PHONKCHARTS</span>
+      </span>
+      <a href="search.html" class="icon-btn" aria-label="Search"><span class="material-symbols-outlined">search</span></a>
+    </header>
+
+    <div class="install-banner">
+      <span class="material-symbols-outlined" aria-hidden="true" style="color:var(--acid);">install_mobile</span>
+      <div class="install-banner__text"><strong>Install PhonkCharts</strong>Add to your home screen for offline charts.</div>
+      <button class="btn btn--primary btn--sm install-banner__btn">Install</button>
+      <button class="icon-btn install-banner__dismiss" aria-label="Dismiss"><span class="material-symbols-outlined">close</span></button>
+    </div>
+
+    <section class="section" style="padding-top:20px;">
+      <div class="section__head">
+        <h1 class="section__title"><span class="dot" aria-hidden="true"></span>Trending</h1>
+        <div class="tab-group" id="trending-tabs" role="tablist" aria-label="Trending period">
+          <button class="active" data-type="daily" role="tab" aria-selected="true">Today</button>
+          <button data-type="weekly" role="tab" aria-selected="false">Weekly</button>
+          <button data-type="monthly" role="tab" aria-selected="false">Monthly</button>
+        </div>
+      </div>
+      <div class="rail" id="trending-rail" aria-live="polite"></div>
+    </section>
+
+    <section class="section">
+      <div class="section__head">
+        <h2 class="section__title">Browse Categories</h2>
+      </div>
+      <div class="chip-row" id="category-chips"></div>
+    </section>
+
+    <section class="section">
+      <div class="section__head">
+        <h2 class="section__title">Fresh Drops</h2>
+        <a class="section__link" href="categories.html">See all <span class="material-symbols-outlined" style="font-size:16px;">chevron_right</span></a>
+      </div>
+      <div class="rail" id="newest-rail" aria-live="polite"></div>
+    </section>
+
+    <section class="section">
+      <div class="section__head">
+        <h2 class="section__title">Top Overall</h2>
+        <a class="section__link" href="categories.html?chart=top50">View chart <span class="material-symbols-outlined" style="font-size:16px;">chevron_right</span></a>
+      </div>
+      <div id="top-list"></div>
+    </section>
+  </main>
+</div>
+
+<nav class="bottom-nav" aria-label="Mobile navigation">
+  <a data-nav="home" href="index.html" class="active"><span class="material-symbols-outlined">home</span>Home</a>
+  <a data-nav="search" href="search.html"><span class="material-symbols-outlined">search</span>Search</a>
+  <a data-nav="categories" href="categories.html"><span class="material-symbols-outlined">grid_view</span>Categories</a>
+  <a data-nav="favorites" href="favorites.html"><span class="material-symbols-outlined">favorite</span>Favorites</a>
+</nav>
+
+<script type="module" src="js/app.js"></script>
+</body>
+</html>

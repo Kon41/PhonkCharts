@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kon41.github.io/phonkcharts/sitemap.xml

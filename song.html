@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title id="doc-title">Song — PhonkCharts</title>
+<meta id="meta-desc" name="description" content="Song details on PhonkCharts." />
+<link rel="canonical" href="https://kon41.github.io/phonkcharts/song.html" />
+<meta name="theme-color" content="#0a0a0f" />
+<link rel="manifest" href="manifest.json" />
+<link rel="icon" href="assets/icons/icon-192.png" />
+<link rel="apple-touch-icon" href="assets/icons/icon-192.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,400,0,0" />
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar" aria-label="Main navigation">
+    <div class="brand"><div class="brand__mark">PC</div><div class="brand__name">PHONK<span>CHARTS</span></div></div>
+    <ul class="nav-list">
+      <li><a class="nav-link" data-nav="home" href="index.html"><span class="material-symbols-outlined">home</span>Home</a></li>
+      <li><a class="nav-link" data-nav="search" href="search.html"><span class="material-symbols-outlined">search</span>Search</a></li>
+      <li><a class="nav-link" data-nav="categories" href="categories.html"><span class="material-symbols-outlined">grid_view</span>Categories</a></li>
+      <li><a class="nav-link" data-nav="favorites" href="favorites.html"><span class="material-symbols-outlined">favorite</span>Favorites</a></li>
+    </ul>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <button class="icon-btn" id="back-btn" aria-label="Go back"><span class="material-symbols-outlined">arrow_back</span></button>
+      <span class="topbar__title">Track</span>
+      <span style="width:40px;"></span>
+    </header>
+
+    <div id="song-content">
+      <div class="detail-hero">
+        <div class="skel" style="width:220px;height:220px;border-radius:24px;"></div>
+        <div class="skel" style="width:180px;height:24px;border-radius:8px;"></div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<nav class="bottom-nav" aria-label="Mobile navigation">
+  <a data-nav="home" href="index.html"><span class="material-symbols-outlined">home</span>Home</a>
+  <a data-nav="search" href="search.html"><span class="material-symbols-outlined">search</span>Search</a>
+  <a data-nav="categories" href="categories.html"><span class="material-symbols-outlined">grid_view</span>Categories</a>
+  <a data-nav="favorites" href="favorites.html"><span class="material-symbols-outlined">favorite</span>Favorites</a>
+</nav>
+
+<script type="module" src="js/song.js"></script>
+</body>
+</html>

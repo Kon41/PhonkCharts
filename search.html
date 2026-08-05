@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Search — PhonkCharts</title>
+<meta name="description" content="Search trending phonk, drift and edit songs by title, artist or category." />
+<link rel="canonical" href="https://kon41.github.io/phonkcharts/search.html" />
+<meta name="theme-color" content="#0a0a0f" />
+<link rel="manifest" href="manifest.json" />
+<link rel="icon" href="assets/icons/icon-192.png" />
+<link rel="apple-touch-icon" href="assets/icons/icon-192.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,400,0,0" />
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar" aria-label="Main navigation">
+    <div class="brand"><div class="brand__mark">PC</div><div class="brand__name">PHONK<span>CHARTS</span></div></div>
+    <ul class="nav-list">
+      <li><a class="nav-link" data-nav="home" href="index.html"><span class="material-symbols-outlined">home</span>Home</a></li>
+      <li><a class="nav-link active" data-nav="search" href="search.html"><span class="material-symbols-outlined">search</span>Search</a></li>
+      <li><a class="nav-link" data-nav="categories" href="categories.html"><span class="material-symbols-outlined">grid_view</span>Categories</a></li>
+      <li><a class="nav-link" data-nav="favorites" href="favorites.html"><span class="material-symbols-outlined">favorite</span>Favorites</a></li>
+    </ul>
+    <div class="sidebar-foot">PhonkCharts · updated daily<br />Data refreshes every 24h</div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div class="search-bar">
+        <span class="material-symbols-outlined" aria-hidden="true">search</span>
+        <input id="search-input" type="search" placeholder="Search songs, artists, categories…" aria-label="Search songs, artists, or categories" autocomplete="off" />
+      </div>
+    </header>
+
+    <div class="page-head">
+      <h1>Search</h1>
+      <p id="result-count">Start typing to find a track.</p>
+    </div>
+
+    <div class="chip-row" id="quick-filters">
+      <button class="chip active" data-filter="all">All</button>
+      <button class="chip" data-filter="Phonk">Phonk</button>
+      <button class="chip" data-filter="Brazilian Phonk">Brazilian Phonk</button>
+      <button class="chip" data-filter="Drift">Drift</button>
+      <button class="chip" data-filter="Sigma">Sigma</button>
+      <button class="chip" data-filter="Luxury">Luxury</button>
+      <button class="chip" data-filter="Car Edit">Car Edit</button>
+      <button class="chip" data-filter="Anime">Anime</button>
+      <button class="chip" data-filter="Funk">Funk</button>
+      <button class="chip" data-filter="Slowed + Reverb">Slowed + Reverb</button>
+    </div>
+
+    <div class="grid" id="results"></div>
+  </main>
+</div>
+
+<nav class="bottom-nav" aria-label="Mobile navigation">
+  <a data-nav="home" href="index.html"><span class="material-symbols-outlined">home</span>Home</a>
+  <a data-nav="search" href="search.html" class="active"><span class="material-symbols-outlined">search</span>Search</a>
+  <a data-nav="categories" href="categories.html"><span class="material-symbols-outlined">grid_view</span>Categories</a>
+  <a data-nav="favorites" href="favorites.html"><span class="material-symbols-outlined">favorite</span>Favorites</a>
+</nav>
+
+<script type="module" src="js/search.js"></script>
+</body>
+</html>
