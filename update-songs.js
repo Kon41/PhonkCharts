@@ -36,39 +36,70 @@ import path from 'node:path';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const SONGS_PATH = path.join(__dirname, 'songs.json');
 
-// eslint-disable-next-line no-unused-vars
-const SONG_SHAPE_EXAMPLE = {
-  id: 'pc-0001',
-  title: 'Song Title',
-  artist: 'Artist Name',
-  category: 'Phonk',
-  cover: 'https://example.com/cover.jpg',
-  preview: 'https://example.com/preview.mp3', // or null if unavailable
-  spotify: 'https://open.spotify.com/track/…',
-  youtube: 'https://www.youtube.com/watch?v=…',
-  appleMusic: 'https://music.apple.com/…',
-  instagramAudio: 'https://www.instagram.com/reels/audio/…', // or null
-  rank: 1,
-  overallRank: 1,
-  popularity: 87,
-  releaseYear: 2026,
-  duration: 142,
-  trendingType: 'daily', // 'daily' | 'weekly' | 'monthly'
-};
-
 /**
- * PLACEHOLDER — swap this out for real API calls (see notes above).
- * Currently: loads the existing catalog and nudges popularity scores with
- * a small random walk, then re-derives rank/overallRank, so a scheduled
- * run produces a visibly "fresh" chart without needing external credentials.
+ * Fetches live track data from the Spotify Web API.
  */
 async function fetchLatestSongs(existingSongs) {
-  const nudged = existingSongs.map((song) => {
-    const delta = Math.round((Math.random() - 0.5) * 8); // ±4 popularity drift
-    const popularity = Math.min(100, Math.max(30, song.popularity + delta));
-    return { ...song, popularity };
-  });
-  return nudged;
+  const clientId = '1ee2006efb53461986d8b055ce7f355c';
+  const clientSecret = process.env.SPOTIFY_CLIENT_SECRET; // Keep your secret secure in environment variables
+
+  if (!clientId || !clientSecret) {
+    console.warn("⚠️ API credentials not found. Using fallback mock data.");
+    return existingSongs.map((song) => {
+      const delta = Math.round((Math.random() - 0.5) * 8);
+      return { ...song, popularity: Math.min(100, Math.max(30, song.popularity + delta)) };
+    });
+  }
+
+  try {
+    // 1. Get OAuth Access Token from Spotify
+    const tokenRes = await fetch('https://accounts.spotify.com/api/token', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Authorization': 'Basic ' + Buffer.from(clientId + ':' + clientSecret).toString('base64'),
+      },
+      body: 'grant_type=client_credentials',
+    });
+    const tokenData = await tokenRes.json();
+    const accessToken = tokenData.access_token;
+
+    // 2. Fetch tracks from a specific playlist (Replace with your actual Spotify Playlist ID)
+    const playlistId = 'YOUR_SPOTIFY_PLAYLIST_ID_HERE';
+    const playlistRes = await fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {
+      headers: { 'Authorization': `Bearer ${accessToken}` },
+    });
+    const playlistData = await playlistRes.json();
+
+    // 3. Map Spotify's response into your app's song shape
+    const updatedSongs = playlistData.items.map((item, index) => {
+      const track = item.track;
+      return {
+        id: `sp-${track.id}`,
+        title: track.name,
+        artist: track.artists.map((a) => a.name).join(', '),
+        category: 'Phonk',
+        cover: track.album.images[0]?.url || null,
+        preview: track.preview_url,
+        spotify: track.external_urls.spotify,
+        youtube: null,
+        appleMusic: null,
+        instagramAudio: null,
+        rank: index + 1,
+        overallRank: index + 1,
+        popularity: track.popularity,
+        releaseYear: new Date(track.album.release_date).getFullYear(),
+        duration: Math.round(track.duration_ms / 1000),
+        trendingType: 'daily',
+      };
+    });
+
+    return updatedSongs;
+
+  } catch (error) {
+    console.error('Error fetching from Spotify API:', error);
+    return existingSongs; 
+  }
 }
 
 function recomputeRanks(songs) {
@@ -99,3 +130,4 @@ main().catch((err) => {
   console.error('update-songs failed:', err);
   process.exit(1);
 });
+
