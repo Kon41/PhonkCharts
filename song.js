@@ -81,14 +81,14 @@ function render(song) {
   const fullSongBtn = el(
     'a',
     { class: 'btn btn--ghost', href: song.spotify || song.youtube || song.appleMusic, target: '_blank', rel: 'noopener noreferrer' },
-    [el('span', { class: 'material-symbols-outlined' }, 'open_in_new'), 'Listen Full Song']
+    [el('span', { class: 'material-symbols-outlined' }, 'open_in_new'), 'Find Full Song']
   );
 
   const links = [
-    externalLinkRow('Spotify', song.spotify, 'graphic_eq'),
-    externalLinkRow('YouTube', song.youtube, 'smart_display'),
-    externalLinkRow('Apple Music', song.appleMusic, 'music_note'),
-    externalLinkRow('Instagram Audio', song.instagramAudio, 'photo_camera'),
+    externalLinkRow('Search Spotify', song.spotify, 'graphic_eq'),
+    externalLinkRow('Search YouTube', song.youtube, 'smart_display'),
+    externalLinkRow('Search Apple Music', song.appleMusic, 'music_note'),
+    externalLinkRow('Search Instagram', song.instagramAudio, 'photo_camera'),
   ].filter(Boolean);
 
   content.innerHTML = '';
@@ -111,6 +111,9 @@ function render(song) {
       ]),
 
       el('div', { class: 'detail-actions' }, [previewBtn, fullSongBtn, favBtn, shareBtn]),
+      song.preview
+        ? el('p', { style: 'font-size:11px;color:var(--ink-faint);max-width:320px;' }, 'Preview plays a placeholder beat — link out to hear the licensed track.')
+        : null,
     ]),
     el('div', { class: 'section' }, el('h2', { class: 'section__title' }, 'Listen Elsewhere')),
     el('div', { class: 'external-links' }, links.length ? links : el('p', { style: 'color:var(--ink-faint);grid-column:1/-1;text-align:center;' }, 'No external links available.'))

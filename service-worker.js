@@ -10,7 +10,7 @@
 //     gracefully instead of breaking.
 // =============================================================================
 
-const VERSION = 'v1.0.0';
+const VERSION = 'v1.1.0';
 const SHELL_CACHE = `phonkcharts-shell-${VERSION}`;
 const DATA_CACHE = `phonkcharts-data-${VERSION}`;
 const RUNTIME_CACHE = `phonkcharts-runtime-${VERSION}`;
@@ -34,6 +34,12 @@ const SHELL_ASSETS = [
   './icon-192.png',
   './icon-512.png',
   './icon-512-maskable.png',
+  './preview-01.mp3',
+  './preview-02.mp3',
+  './preview-03.mp3',
+  './preview-04.mp3',
+  './preview-05.mp3',
+  './preview-06.mp3',
 ];
 
 const DATA_URL_PATTERN = /\/songs\.json$/;
